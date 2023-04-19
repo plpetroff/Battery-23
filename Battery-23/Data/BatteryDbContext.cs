@@ -6,9 +6,9 @@
     using System.Collections.Generic;
     using System.Text;
 
-    public class ApplicationDbContext : IdentityDbContext
+    public class BatteryDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public BatteryDbContext(DbContextOptions<BatteryDbContext> options)
             : base(options)
         {
         }
