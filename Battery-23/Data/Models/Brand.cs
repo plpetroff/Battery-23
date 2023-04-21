@@ -6,7 +6,7 @@
 
     public class Brand
     {
-        public int Id { get; set; }
+        public int Id { get; init; }
 
         [Required]
         [MaxLength(BrandNameMaxLength)]
