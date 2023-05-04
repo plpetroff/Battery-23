@@ -18,6 +18,10 @@
 
         public DbSet<Battery> Batteries { get; init; }
         public DbSet<Brand> Brands { get; init; }
+        public DbSet<Capacity> Capacities { get; init; }
+        public DbSet<Category> Categories { get; init; }
+        public DbSet<Technology> Technologies { get; init; }
+        public DbSet<Amperage> Amperages { get; init; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
