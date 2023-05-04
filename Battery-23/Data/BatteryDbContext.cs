@@ -26,12 +26,35 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.
-                Entity<Battery>()
+            builder
+                .Entity<Battery>()
                 .HasOne(b => b.Brand)
                 .WithMany(b =>b.Batteries)
                 .HasForeignKey(b => b.BrandId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<Battery>()
+                .HasOne(b => b.Capacity)
+                .WithMany(c => c.Batteries)
+                .HasForeignKey(b => b.CapacityId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<Battery>()
+                .HasOne(b => b.Category)
+                .WithMany(c => c.Batteries)
+                .HasForeignKey(b => b.CategoryId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<Battery>()
+                .HasOne(b => b.Technology)
+                .WithMany(t => t.Batteries)
+                .HasForeignKey(b => b.TechnologyId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
 
             base.OnModelCreating(builder);
         }
