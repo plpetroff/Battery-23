@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class Terminals
+    public class Terminal
     {
         public int Id { get; set; }
         public string Description { get; set; }

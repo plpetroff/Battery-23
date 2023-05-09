@@ -22,6 +22,8 @@
             SeedCategory(data);
             SeedTechnology(data);
             SeedAmperage(data);
+            SeedTerminals(data);
+            SeedBoxTypes(data);
 
 
             return app;
@@ -138,6 +140,29 @@
 
             data.SaveChanges();
         }
+        
+        private static void SeedTerminals(BatteryDbContext data)
+        {
+            if (data.Terminals.Any())
+            {
+                return;
+            }
+            data.Terminals.AddRange(new[]
+            {
+                new Terminal{ Description = "R + Standart"},
+                new Terminal{ Description = "L + Standart"},
+                new Terminal{ Description = "R + Small"},
+                new Terminal{ Description = "L + Small"},
+                new Terminal{ Description = "Side"},
+                new Terminal{ Description = "Marine twin"},
+                new Terminal{ Description = "Stud"},
+                new Terminal{ Description = "Dual"},
+                new Terminal{ Description = "Top"},
+
+            });
+
+            data.SaveChanges();
+        }
 
         private static void SeedAmperage(BatteryDbContext data)
         {
@@ -184,6 +209,48 @@
                 new Amperage{ Value = 1300},
                 new Amperage{ Value = 1400},
                 new Amperage{ Value = 1600},
+            });
+
+            data.SaveChanges();
+        }
+
+        private static void SeedBoxTypes(BatteryDbContext data)
+        {
+            if (data.BoxTypes.Any())
+            {
+                return;
+            }
+
+            data.BoxTypes.AddRange(new[]
+            {
+                new BoxType{ BoxTypeCode = "L0"},
+                new BoxType{ BoxTypeCode = "L1"},
+                new BoxType{ BoxTypeCode = "LB1"},
+                new BoxType{ BoxTypeCode = "L2"},
+                new BoxType{ BoxTypeCode = "LB2"},
+                new BoxType{ BoxTypeCode = "L3"},
+                new BoxType{ BoxTypeCode = "LB3"},
+                new BoxType{ BoxTypeCode = "L4"},
+                new BoxType{ BoxTypeCode = "LB4"},
+                new BoxType{ BoxTypeCode = "L5"},
+                new BoxType{ BoxTypeCode = "LB5"},
+                new BoxType{ BoxTypeCode = "L6"},
+                new BoxType{ BoxTypeCode = "LB6"},
+                new BoxType{ BoxTypeCode = "B19"},
+                new BoxType{ BoxTypeCode = "B24"},
+                new BoxType{ BoxTypeCode = "D20"},
+                new BoxType{ BoxTypeCode = "D23"},
+                new BoxType{ BoxTypeCode = "D26"},
+                new BoxType{ BoxTypeCode = "D31"},
+                new BoxType{ BoxTypeCode = "M24"},
+                new BoxType{ BoxTypeCode = "M27"},
+                new BoxType{ BoxTypeCode = "M31"},
+                new BoxType{ BoxTypeCode = "A"},
+                new BoxType{ BoxTypeCode = "B"},
+                new BoxType{ BoxTypeCode = "C"},
+                new BoxType{ BoxTypeCode = "MAC 110"},
+                new BoxType{ BoxTypeCode = "MAC 143"},
+                new BoxType{ BoxTypeCode = "MAC 155"},
             });
 
             data.SaveChanges();

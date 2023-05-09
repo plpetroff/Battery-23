@@ -21,6 +21,8 @@
         public DbSet<Category> Categories { get; init; }
         public DbSet<Technology> Technologies { get; init; }
         public DbSet<Amperage> Amperages { get; init; }
+        public DbSet<BoxType> BoxTypes { get; init; }
+        public DbSet<Terminal> Terminals { get; init; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -65,6 +67,13 @@
                 .HasOne(b => b.BoxType)
                 .WithMany(bt => bt.Batteries)
                 .HasForeignKey(b => b.BoxTypeId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<Battery>()
+                .HasOne(b => b.Terminal)
+                .WithMany(t => t.Batteries)
+                .HasForeignKey(b => b.TerminalId)
                 .OnDelete(DeleteBehavior.Restrict);
 
 
