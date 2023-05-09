@@ -15,10 +15,9 @@
         {
         }
 
-
         public DbSet<Battery> Batteries { get; init; }
-        public DbSet<Brand> Brands { get; init; }
         public DbSet<Capacity> Capacities { get; init; }
+        public DbSet<Brand> Brands { get; init; }
         public DbSet<Category> Categories { get; init; }
         public DbSet<Technology> Technologies { get; init; }
         public DbSet<Amperage> Amperages { get; init; }
@@ -29,9 +28,9 @@
             builder
                 .Entity<Battery>()
                 .HasOne(b => b.Brand)
-                .WithMany(b =>b.Batteries)
+                .WithMany(b => b.Batteries)
                 .HasForeignKey(b => b.BrandId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Restrict); 
 
             builder
                 .Entity<Battery>()
@@ -54,6 +53,19 @@
                 .HasForeignKey(b => b.TechnologyId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder
+                .Entity<Battery>()
+                .HasOne(b => b.Terminal)
+                .WithMany(t => t.Batteries)
+                .HasForeignKey(b => b.TerminalId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<Battery>()
+                .HasOne(b => b.BoxType)
+                .WithMany(bt => bt.Batteries)
+                .HasForeignKey(b => b.BoxTypeId)
+                .OnDelete(DeleteBehavior.Restrict);
 
 
             base.OnModelCreating(builder);

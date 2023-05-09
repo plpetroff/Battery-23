@@ -17,6 +17,12 @@
         public int CapacityId { get; set; }
         public Capacity Capacity { get; set; }
 
+        public int TerminalId { get; set; }
+        public Terminals Terminal { get; set; }
+
+        public int BoxTypeId { get; set; }
+        public BoxType BoxType { get; set; }
+
 
 
     }

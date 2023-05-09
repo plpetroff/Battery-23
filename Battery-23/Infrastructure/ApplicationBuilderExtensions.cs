@@ -17,9 +17,9 @@
 
             data.Database.Migrate();
 
-            SeedBrand(data);
+            SeedBrand(data); 
+            SeedCapacity(data);                      
             SeedCategory(data);
-            SeedCapacity(data);
             SeedTechnology(data);
             SeedAmperage(data);
 

@@ -1,13 +1,11 @@
 ﻿namespace Battery_23.Data.Models
 {
-    using System.Collections;
     using System.Collections.Generic;
 
-    public class Capacity
+    public class Terminals
     {
         public int Id { get; set; }
-        public int Value { get; set; }
-
+        public string Description { get; set; }
         public IEnumerable<Battery> Batteries { get; init; } = new List<Battery>();
     }
 }

@@ -4,14 +4,16 @@ using Battery_23.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Battery_23.Data.Migrations
 {
     [DbContext(typeof(BatteryDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230505120310_FirstTables")]
+    partial class FirstTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,9 +46,6 @@ namespace Battery_23.Data.Migrations
                     b.Property<int?>("AmperageId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BoxTypeId")
-                        .HasColumnType("int");
-
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
 
@@ -59,14 +58,9 @@ namespace Battery_23.Data.Migrations
                     b.Property<int>("TechnologyId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TerminalId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AmperageId");
-
-                    b.HasIndex("BoxTypeId");
 
                     b.HasIndex("BrandId");
 
@@ -76,24 +70,7 @@ namespace Battery_23.Data.Migrations
 
                     b.HasIndex("TechnologyId");
 
-                    b.HasIndex("TerminalId");
-
                     b.ToTable("Batteries");
-                });
-
-            modelBuilder.Entity("Battery_23.Data.Models.BoxType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("BoxTypeCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BoxType");
                 });
 
             modelBuilder.Entity("Battery_23.Data.Models.Brand", b =>
@@ -158,21 +135,6 @@ namespace Battery_23.Data.Migrations
                     b.HasKey("TechnologyId");
 
                     b.ToTable("Technologies");
-                });
-
-            modelBuilder.Entity("Battery_23.Data.Models.Terminals", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Terminals");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -381,12 +343,6 @@ namespace Battery_23.Data.Migrations
                         .WithMany("Batteries")
                         .HasForeignKey("AmperageId");
 
-                    b.HasOne("Battery_23.Data.Models.BoxType", "BoxType")
-                        .WithMany("Batteries")
-                        .HasForeignKey("BoxTypeId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("Battery_23.Data.Models.Brand", "Brand")
                         .WithMany("Batteries")
                         .HasForeignKey("BrandId")
@@ -411,14 +367,6 @@ namespace Battery_23.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Battery_23.Data.Models.Terminals", "Terminal")
-                        .WithMany("Batteries")
-                        .HasForeignKey("TerminalId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("BoxType");
-
                     b.Navigation("Brand");
 
                     b.Navigation("Capacity");
@@ -426,8 +374,6 @@ namespace Battery_23.Data.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Technology");
-
-                    b.Navigation("Terminal");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -486,11 +432,6 @@ namespace Battery_23.Data.Migrations
                     b.Navigation("Batteries");
                 });
 
-            modelBuilder.Entity("Battery_23.Data.Models.BoxType", b =>
-                {
-                    b.Navigation("Batteries");
-                });
-
             modelBuilder.Entity("Battery_23.Data.Models.Brand", b =>
                 {
                     b.Navigation("Batteries");
@@ -507,11 +448,6 @@ namespace Battery_23.Data.Migrations
                 });
 
             modelBuilder.Entity("Battery_23.Data.Models.Technology", b =>
-                {
-                    b.Navigation("Batteries");
-                });
-
-            modelBuilder.Entity("Battery_23.Data.Models.Terminals", b =>
                 {
                     b.Navigation("Batteries");
                 });
